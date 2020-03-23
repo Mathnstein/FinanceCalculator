@@ -25,7 +25,7 @@ SECRET_KEY = '#1*pw_q^tuax=a5p5-dw$=$7rr1u(2c_9(jiac61tfmp%3n49)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["mathnstein.pythonanywhere.com"]
+ALLOWED_HOSTS = ["mathnstein.pythonanywhere.com", "127.0.0.1"]
 
 
 # Application definition
