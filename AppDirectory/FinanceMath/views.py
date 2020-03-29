@@ -9,7 +9,7 @@ from dateutil.relativedelta import relativedelta
 
 def index(request):
     oToday = datetime.datetime.today()
-    sTimeScale = 'Monthly'
+    sTimeScale = 'Yearly'
     fBasePay = 78E3
     fVariablePayPercent = 12
     iSteps = 12
@@ -17,7 +17,7 @@ def index(request):
     # initial values
     fInitialSavings = 26*1E3
     fPercentSaved = 25
-    fPercentRaise = 115
+    fPercentRaise = 105
     fIncomeTaxPercent = 31
     fBonusTaxPercent = 25
 
@@ -42,36 +42,50 @@ def index(request):
     Saved = np.around(Saved)
 
     # Plot
-    axis = [
-            Bar(x=x_axis, y=Pay,
-                name=sTimeScale+' Pay',
-                opacity=0.8),
-            Bar(x=x_axis, y=TaxedPay,
-                name =sTimeScale+' Taxed Pay'),
-            Scatter(x=x_axis,y=Saved,
-                    mode = 'lines', name = 'Total Amount Saved',
-                    marker_color='orange')
+    data = [
+            Bar(x = x_axis, y = Pay,
+                name = sTimeScale+' Pay',
+                marker_color='rgb(1,87,155)'
+                ),
+            Bar(x = x_axis, y = TaxedPay,
+                name = sTimeScale+' Taxed Pay',
+                marker_color='rgb(3,169,250)'
+                ),
+            Scatter(x = x_axis, y = Saved,
+                    mode = 'lines+markers', name = 'Total Amount Saved',
+                    marker_color='orange',
+                    yaxis='y2')
             ]
 
-    # layout = {
-    #     title: 'Finances Over Time',
-    #     xaxis: sTimeScale
-    # }
+    layout = Layout(
+        title= 'Finances Over Time',
+        xaxis= dict(title='Time'),
+        yaxis= dict(title='Amount', color='rgb(1,87,155)'),
+        yaxis2= dict(title = 'Total Saved', color = 'orange',
+                overlaying = 'y', side = 'right', showgrid = False),
+        legend= dict(x = 0, y = 1.0, bgcolor='rgba(255, 255, 255, 0)',
+                bordercolor='rgba(255, 255, 255, 0)', orientation='h'),
+        barmode='group',
+        bargap=0.15,
+        bargroupgap=0.1
+    )
 
     if sTimeScale == 'Yearly':
         Bonus = Pay*(fVariablePayPercent/100)
         Bonus = np.around(Bonus)
-        axis.append(
+        data.append(
             Bar(x = x_axis, y = Bonus,
-                name='Yearly Bonus'
+                name='Yearly Bonus', marker_color='rgb(179,229,252)'
             )
         ) 
+    output_plot = {
+        'data': data,
+        'layout': layout
+    }
 
-    axis_html = plot(axis,
-               output_type='div',
-               include_plotlyjs=False)
+    axis_html = plot(output_plot, output_type='div', include_plotlyjs=False, show_link=False, link_text='')
 
     context = {
-        'axis_html': axis_html
+        'plot': axis_html
     }
     return render(request, "FinanceMath/index.html", context=context)
