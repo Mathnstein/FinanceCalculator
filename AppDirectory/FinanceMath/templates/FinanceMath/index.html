@@ -4,14 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Finance Calculator</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
   {% autoescape off %}
-  {{ plot_div }}
-  {% endautoescape %}
-
-  {% autoescape off %}
-  {{ plot_div2 }}
+  {{ axis_html }}
   {% endautoescape %}
 </body>
 </html>
