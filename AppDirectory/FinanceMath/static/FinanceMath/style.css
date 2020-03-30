@@ -1,0 +1,82 @@
+.page-header {
+    background-color: #000839;
+    margin: auto;
+    padding: 20px 20px 20px 40px;
+}
+
+.page-header h1 {
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.page-header h4 {
+    color: #ffffff;
+    text-align: center;
+}
+
+.page-description {
+    background-color: #005082;
+    margin: auto;
+    font-size: 30pt;
+    text-align: center;
+}
+
+.page-description h3 {
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    text-align: center;
+    background-color: rgba(34, 127, 155, 0.534);
+}
+
+form {
+    display: inline-block;
+}
+
+form h4 {
+    color: #00a8cc;
+}
+
+form ul {
+    list-style-type: none;
+    padding: 0pt;
+    margin-left: 10px;
+}
+
+form li {
+    float: left;
+    padding-right: 10px;
+}
+
+form input {
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+form label {
+    margin-bottom: 10px;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #00a8cc;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #01c1ec;
+  }

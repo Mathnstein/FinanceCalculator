@@ -114,14 +114,16 @@ def index(request):
     layout = Layout(
         title= 'Finances Over Time',
         xaxis= dict(title='Time'),
-        yaxis= dict(title='Amount', color='#000839', range=[0, np.max(Pay*1.1)]),
+        yaxis= dict(title='Amount', color='#000839', range=[0, np.max(Pay*1.05)]),
         yaxis2= dict(title = 'Total Saved', color = '#da2d2d',
                 overlaying = 'y', side = 'right', showgrid = False),
-        legend= dict(x = 0, y = 1.1, bgcolor='rgba(255, 255, 255, 0)',
+        legend= dict(x = 0, y = 1.05, bgcolor='rgba(255, 255, 255, 0)',
                 bordercolor='rgba(255, 255, 255, 0)', orientation='h'),
         barmode='group',
         bargap=0.15,
-        bargroupgap=0.1
+        bargroupgap=0.1,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)'
     )
 
 
