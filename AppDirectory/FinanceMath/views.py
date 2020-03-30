@@ -78,20 +78,38 @@ def index(request):
             Bar(x = x_axis, y = TaxedPay,
                 name = sTimeScale+' Taxed Pay',
                 marker_color='#005082', text = TaxedPay, texttemplate='%{text:.3s}', textposition='outside'
-                ),
+                )
+            ]
+
+    if sTimeScale == 'Yearly':
+        Bonus = Pay*(fVariablePayPercent/100)
+        Bonus = np.around(Bonus)
+        data.append(
+            Bar(x = x_axis, y = Bonus,
+                name='Yearly Bonus', marker_color='#00a8cc', text = Bonus, texttemplate='%{text:.3s}', textposition='outside'
+            )
+        ) 
+
+    data.extend([
             Scatter(x = x_axis, y = AggressiveSaved,
                     mode = 'lines+markers', name = 'Aggressive Savings (25%)',
                     marker_color='#9d0b0b',
+                    marker_size=12,
+                    marker_symbol='diamond',
                     yaxis='y2'),
             Scatter(x = x_axis, y = ModerateSaved,
                     mode = 'lines+markers', name = 'Moderate Savings (18%)',
                     marker_color='#da2d2d',
+                    marker_size=12,
+                    marker_symbol='diamond',
                     yaxis='y2'),
             Scatter(x = x_axis, y = SomeSaved,
                     mode = 'lines+markers', name = 'Light Savings (10%)',
                     marker_color='#eb8242',
+                    marker_size=12,
+                    marker_symbol='diamond',
                     yaxis='y2')
-            ]
+    ])
 
     layout = Layout(
         title= 'Finances Over Time',
@@ -106,14 +124,7 @@ def index(request):
         bargroupgap=0.1
     )
 
-    if sTimeScale == 'Yearly':
-        Bonus = Pay*(fVariablePayPercent/100)
-        Bonus = np.around(Bonus)
-        data.append(
-            Bar(x = x_axis, y = Bonus,
-                name='Yearly Bonus', marker_color='#00a8cc', text = Bonus, texttemplate='%{text:.3s}', textposition='outside'
-            )
-        ) 
+
     output_plot = {
         'data': data,
         'layout': layout
