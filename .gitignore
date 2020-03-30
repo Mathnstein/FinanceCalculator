@@ -15,4 +15,4 @@ media
 *.py[cod]
 *$py.class
 
-static_root/
+staticfiles/
