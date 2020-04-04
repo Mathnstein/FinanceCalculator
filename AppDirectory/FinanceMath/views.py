@@ -123,16 +123,23 @@ def index(request):
         bargap=0.15,
         bargroupgap=0.1,
         paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)'
+        plot_bgcolor='rgba(0,0,0,0)',
+        height = 1100,
+        uniformtext_minsize=6,
+        uniformtext_mode='hide'
     )
 
+
+    config = {
+        'responsive': True
+        }
 
     output_plot = {
         'data': data,
         'layout': layout
     }
 
-    axis_html = plot(output_plot, output_type='div', include_plotlyjs=False, show_link=False, link_text='')
+    axis_html = plot(output_plot, config=config, output_type='div', include_plotlyjs=False, show_link=False, link_text='')
 
     context = {
         'plot': axis_html,
